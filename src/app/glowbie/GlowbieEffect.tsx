@@ -3,6 +3,7 @@
 import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
+// Update interface to allow for the correct ref type
 interface GlowbieEffectProps {
   containerRef: React.RefObject<HTMLDivElement>;
   faceImageUrl?: string;
@@ -19,9 +20,10 @@ const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUr
 
   // Initialize Three.js scene
   useEffect(() => {
+    // Early return if container ref is null
     if (!containerRef.current) return;
 
-    // Store a reference to the container element to fix ESLint warning
+    // Store a reference to the container element
     const container = containerRef.current;
 
     // Initialize scene, camera, and renderer
