@@ -1,15 +1,14 @@
 'use client';
 
-import { useRef, useEffect, MutableRefObject } from 'react';
+import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 
-// Simplify interface using MutableRefObject
 interface GlowbieEffectProps {
-  containerRef: MutableRefObject<HTMLDivElement | null>;
+  containerId: string;
   faceImageUrl?: string;
 }
 
-const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUrl }) => {
+const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerId, faceImageUrl }) => {
   const sceneRef = useRef<THREE.Scene | null>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -20,11 +19,9 @@ const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUr
 
   // Initialize Three.js scene
   useEffect(() => {
-    // Early return if container ref is null
-    if (!containerRef.current) return;
-
-    // Store a reference to the container element
-    const container = containerRef.current;
+    // Get container element by ID instead of using ref
+    const container = document.getElementById(containerId);
+    if (!container) return;
 
     // Initialize scene, camera, and renderer
     const scene = new THREE.Scene();
@@ -117,7 +114,7 @@ const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUr
         faceTextureRef.current.dispose();
       }
     };
-  }, [containerRef]); // Added containerRef to dependency array
+  }, [containerId]); // Use containerId instead of containerRef
 
   // Effect for handling face image changes
   useEffect(() => {
