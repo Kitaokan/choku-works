@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, RefObject } from 'react';
+import { useState, useRef, MutableRefObject } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import CameraCapture from './CameraCapture';
@@ -18,8 +18,8 @@ export default function GlowbiePage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   
-  // Make sure the type matches exactly what we expect in GlowbieEffect
-  const glowbieContainerRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement | null>;
+  // Using a MutableRefObject instead of RefObject to match GlowbieEffect's expected type
+  const glowbieContainerRef = useRef<HTMLDivElement | null>(null) as MutableRefObject<HTMLDivElement | null>;
 
   // Handle camera capture
   const handleCapture = (imageDataUrl: string) => {
