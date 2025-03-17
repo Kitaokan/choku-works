@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, MutableRefObject } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import CameraCapture from './CameraCapture';
@@ -11,15 +11,15 @@ const GlowbieEffect = dynamic(() => import('./GlowbieEffect'), {
   ssr: false
 });
 
+// Unique ID for the glowbie container
+const GLOWBIE_CONTAINER_ID = 'glowbie-container';
+
 export default function GlowbiePage() {
   const [showCamera, setShowCamera] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [glowbieId, setGlowbieId] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  
-  // Using a MutableRefObject instead of RefObject to match GlowbieEffect's expected type
-  const glowbieContainerRef = useRef<HTMLDivElement | null>(null) as MutableRefObject<HTMLDivElement | null>;
 
   // Handle camera capture
   const handleCapture = (imageDataUrl: string) => {
@@ -79,12 +79,12 @@ export default function GlowbiePage() {
 
           {/* Glowbie display area */}
           <div 
-            ref={glowbieContainerRef}
+            id={GLOWBIE_CONTAINER_ID}
             className="relative w-full max-w-2xl h-96 mx-auto rounded-lg overflow-hidden bg-black bg-opacity-30 shadow-2xl mb-10"
           >
             {capturedImage && (
               <GlowbieEffect 
-                containerRef={glowbieContainerRef} 
+                containerId={GLOWBIE_CONTAINER_ID} 
                 faceImageUrl={capturedImage} 
               />
             )}
