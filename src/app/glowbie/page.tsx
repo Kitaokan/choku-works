@@ -17,6 +17,8 @@ export default function GlowbiePage() {
   const [glowbieId, setGlowbieId] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  
+  // Fix: Initialize ref with null directly, not HTMLDivElement | null
   const glowbieContainerRef = useRef<HTMLDivElement>(null);
 
   // Handle camera capture
