@@ -21,13 +21,16 @@ const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUr
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Store a reference to the container element to fix ESLint warning
+    const container = containerRef.current;
+
     // Initialize scene, camera, and renderer
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
     const camera = new THREE.PerspectiveCamera(
       75,
-      containerRef.current.clientWidth / containerRef.current.clientHeight,
+      container.clientWidth / container.clientHeight,
       0.1,
       1000
     );
@@ -35,9 +38,9 @@ const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUr
     cameraRef.current = camera;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setClearColor(0x000000, 0); // Transparent background
-    containerRef.current.appendChild(renderer.domElement);
+    container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Create firefly particles
@@ -78,11 +81,11 @@ const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUr
 
     // Handle window resize
     const handleResize = () => {
-      if (!containerRef.current || !cameraRef.current || !rendererRef.current) return;
+      if (!container || !cameraRef.current || !rendererRef.current) return;
 
-      cameraRef.current.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
+      cameraRef.current.aspect = container.clientWidth / container.clientHeight;
       cameraRef.current.updateProjectionMatrix();
-      rendererRef.current.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+      rendererRef.current.setSize(container.clientWidth, container.clientHeight);
     };
 
     window.addEventListener('resize', handleResize);
@@ -92,8 +95,8 @@ const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUr
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameRef.current);
       
-      if (rendererRef.current && containerRef.current) {
-        containerRef.current.removeChild(rendererRef.current.domElement);
+      if (rendererRef.current && container) {
+        container.removeChild(rendererRef.current.domElement);
       }
       
       if (particlesRef.current && sceneRef.current) {
@@ -112,7 +115,7 @@ const GlowbieEffect: React.FC<GlowbieEffectProps> = ({ containerRef, faceImageUr
         faceTextureRef.current.dispose();
       }
     };
-  }, []);
+  }, [containerRef]); // Added containerRef to dependency array
 
   // Effect for handling face image changes
   useEffect(() => {
