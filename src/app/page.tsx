@@ -57,17 +57,27 @@ export default function Home() {
               </div>
             </div>
             
-            {/* プロジェクト2（プレースホルダー） */}
+            {/* プロジェクト2: Glowbie */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 bg-gray-200 dark:bg-gray-700"></div>
+              <div className="h-48 bg-indigo-900 flex items-center justify-center">
+                <div className="text-white text-4xl">✨ Glowbie ✨</div>
+              </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Coming Soon</h3>
+                <h3 className="text-xl font-bold mb-2">Glowbie</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  次のプロジェクトを計画中です。
+                  カメラで顔をキャプチャし、ホタルのような光の演出を加えるWebアプリ。
                 </p>
-                <div className="flex space-x-2">
-                  <span className="text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 px-2 py-1 rounded">準備中</span>
+                <div className="flex space-x-2 mb-4">
+                  <span className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 px-2 py-1 rounded">Next.js</span>
+                  <span className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 px-2 py-1 rounded">Three.js</span>
+                  <span className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 px-2 py-1 rounded">WebGL</span>
                 </div>
+                <a 
+                  href="/glowbie" 
+                  className="inline-block px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
+                >
+                  体験する
+                </a>
               </div>
             </div>
             
