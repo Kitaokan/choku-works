@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, RefObject } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import CameraCapture from './CameraCapture';
@@ -18,8 +18,8 @@ export default function GlowbiePage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   
-  // Fix: Initialize ref with null directly, not HTMLDivElement | null
-  const glowbieContainerRef = useRef<HTMLDivElement>(null);
+  // Make sure the type matches exactly what we expect in GlowbieEffect
+  const glowbieContainerRef = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement | null>;
 
   // Handle camera capture
   const handleCapture = (imageDataUrl: string) => {
