@@ -1,11 +1,11 @@
 'use client';
 
-import { useRef, useEffect, RefObject } from 'react';
+import { useRef, useEffect, MutableRefObject } from 'react';
 import * as THREE from 'three';
 
-// Update the interface to use the exact React RefObject type
+// Simplify interface using MutableRefObject
 interface GlowbieEffectProps {
-  containerRef: RefObject<HTMLDivElement | null>;
+  containerRef: MutableRefObject<HTMLDivElement | null>;
   faceImageUrl?: string;
 }
 
