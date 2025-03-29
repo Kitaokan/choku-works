@@ -4,18 +4,8 @@ import { redirect } from 'next/navigation';
 import { isAuthenticated } from '@/app/diary/utils';
 import NewEntryForm from '@/app/diary/components/NewEntryForm';
 
-interface Params {
-  year: string;
-  month: string;
-}
-
-export default async function NewEntryPage({ 
-  params,
-  searchParams 
-}: {
-  params: Params;
-  searchParams: Record<string, string>;
-}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function NewEntryPage({ params, searchParams }: any) {
   const { year, month } = params;
 
   // 認証チェック - 認証されていない場合は月別ページにリダイレクト
