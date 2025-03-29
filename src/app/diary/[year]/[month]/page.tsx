@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { getDiaryEntriesByMonth } from '../../utils';
-import DiaryEntryList from '../../components/DiaryEntryList';
-import NewEntryButton from '../../components/NewEntryButton';
+import { getDiaryEntriesByMonth } from '@/app/diary/utils';
+import DiaryEntryList from '@/app/diary/components/DiaryEntryList';
+import NewEntryButton from '@/app/diary/components/NewEntryButton';
 
 interface MonthlyDiaryPageProps {
   params: {
