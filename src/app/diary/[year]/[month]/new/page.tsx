@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { isAuthenticated } from '../../../utils';
-import NewEntryForm from '../../../components/NewEntryForm';
+import { isAuthenticated } from '@/app/diary/utils';
+import NewEntryForm from '@/app/diary/components/NewEntryForm';
 
 interface NewEntryPageProps {
   params: {
