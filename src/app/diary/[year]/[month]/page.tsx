@@ -4,14 +4,16 @@ import { getDiaryEntriesByMonth } from '@/app/diary/utils';
 import DiaryEntryList from '@/app/diary/components/DiaryEntryList';
 import NewEntryButton from '@/app/diary/components/NewEntryButton';
 
-interface MonthlyDiaryPageProps {
-  params: {
-    year: string;
-    month: string;
-  };
+interface Params {
+  year: string;
+  month: string;
 }
 
-export default async function MonthlyDiaryPage({ params }: MonthlyDiaryPageProps) {
+export default async function MonthlyDiaryPage({ 
+  params 
+}: { 
+  params: Params 
+}) {
   const { year, month } = params;
   const entries = await getDiaryEntriesByMonth(year, month);
 
