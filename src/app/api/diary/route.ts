@@ -5,7 +5,7 @@ export async function POST(request: Request) {
   try {
     // リクエストボディを取得
     const body = await request.json();
-    const { date, content, auth } = body;
+    const { date, content } = body;
 
     // 認証チェック
     if (!isAuthenticated(new Request(request.url, { 
