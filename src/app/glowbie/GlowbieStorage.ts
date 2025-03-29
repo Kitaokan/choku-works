@@ -67,12 +67,13 @@ class GlowbieStorage {
   private cleanupExpiredEntries(): void {
     const now = Date.now();
     
-    for (const [id, entry] of this.storage.entries()) {
+    // Map.entriesをArray.fromで配列に変換してからforEachで処理
+    Array.from(this.storage).forEach(([id, entry]) => {
       if (entry.expiresAt < now) {
         this.storage.delete(id);
         console.log(`Deleted expired Glowbie: ${id}`);
       }
-    }
+    });
   }
 }
 
