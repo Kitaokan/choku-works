@@ -32,8 +32,8 @@ export const initializeDataDir = async () => {
     } catch {
       await fs.writeFile(MONTHS_FILE, JSON.stringify([]));
     }
-  } catch (error) {
-    console.error('初期化エラー:', error);
+  } catch (err) {
+    console.error('初期化エラー:', err);
   }
 };
 
@@ -44,8 +44,8 @@ export const getDiaryMonths = async (): Promise<DiaryMonth[]> => {
   try {
     const data = await fs.readFile(MONTHS_FILE, 'utf-8');
     return JSON.parse(data);
-  } catch (error) {
-    console.error('月別データ取得エラー:', error);
+  } catch (err) {
+    console.error('月別データ取得エラー:', err);
     return [];
   }
 };
@@ -62,7 +62,7 @@ export const getDiaryEntriesByMonth = async (year: string, month: string): Promi
     const entries = JSON.parse(data) as DiaryEntry[];
     // 日付の新しい順にソート
     return entries.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  } catch (error) {
+  } catch {
     // ファイルが存在しない場合は空の配列を返す
     return [];
   }
@@ -110,7 +110,7 @@ export const addDiaryEntry = async (date: string, content: string): Promise<Diar
 const updateMonthsData = async (year: string, month: string, entryCount: number) => {
   try {
     const data = await fs.readFile(MONTHS_FILE, 'utf-8');
-    let months: DiaryMonth[] = JSON.parse(data);
+    const months: DiaryMonth[] = JSON.parse(data);
     
     const existingMonthIndex = months.findIndex(m => m.year === year && m.month === month);
     
@@ -136,8 +136,8 @@ const updateMonthsData = async (year: string, month: string, entryCount: number)
     });
     
     await fs.writeFile(MONTHS_FILE, JSON.stringify(months, null, 2));
-  } catch (error) {
-    console.error('月別データ更新エラー:', error);
+  } catch (err) {
+    console.error('月別データ更新エラー:', err);
   }
 };
 
