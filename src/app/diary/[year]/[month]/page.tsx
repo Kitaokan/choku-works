@@ -4,16 +4,8 @@ import { getDiaryEntriesByMonth } from '@/app/diary/utils';
 import DiaryEntryList from '@/app/diary/components/DiaryEntryList';
 import NewEntryButton from '@/app/diary/components/NewEntryButton';
 
-interface Params {
-  year: string;
-  month: string;
-}
-
-export default async function MonthlyDiaryPage({ 
-  params 
-}: { 
-  params: Params 
-}) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function MonthlyDiaryPage({ params }: any) {
   const { year, month } = params;
   const entries = await getDiaryEntriesByMonth(year, month);
 
