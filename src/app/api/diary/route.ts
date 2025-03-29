@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
-import { addDiaryEntry, isAuthenticated } from '../../diary/utils';
+import { addDiaryEntry, isAuthenticated } from '@/app/diary/utils';
 
 export async function POST(request: Request) {
   try {
     // リクエストボディを取得
     const body = await request.json();
-    const { date, content } = body;
+    // auth は認証チェックで使用するため ESLint エラーを回避
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { date, content, auth } = body;
 
     // 認証チェック
     if (!isAuthenticated(new Request(request.url, { 
