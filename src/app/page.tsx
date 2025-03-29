@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-gray-900 dark:to-black">
@@ -8,6 +10,7 @@ export default function Home() {
           <ul className="flex space-x-6">
             <li><a href="#about" className="hover:text-blue-500 transition-colors">About</a></li>
             <li><a href="#works" className="hover:text-blue-500 transition-colors">Works</a></li>
+            <li><Link href="/diary" className="hover:text-blue-500 transition-colors">Diary</Link></li>
             <li><a href="#contact" className="hover:text-blue-500 transition-colors">Contact</a></li>
           </ul>
         </nav>
@@ -81,17 +84,26 @@ export default function Home() {
               </div>
             </div>
             
-            {/* プロジェクト3（プレースホルダー） */}
+            {/* プロジェクト3: 日記 */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
-              <div className="h-48 bg-gray-200 dark:bg-gray-700"></div>
+              <div className="h-48 bg-green-800 flex items-center justify-center">
+                <div className="text-white text-4xl">📓 Diary 📓</div>
+              </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Coming Soon</h3>
+                <h3 className="text-xl font-bold mb-2">日記</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  次のプロジェクトを計画中です。
+                  シンプルな日記アプリ。年月ごとに記録を管理できます。
                 </p>
-                <div className="flex space-x-2">
-                  <span className="text-xs bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 px-2 py-1 rounded">準備中</span>
+                <div className="flex space-x-2 mb-4">
+                  <span className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 px-2 py-1 rounded">Next.js</span>
+                  <span className="text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 px-2 py-1 rounded">API Routes</span>
                 </div>
+                <Link 
+                  href="/diary" 
+                  className="inline-block px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                >
+                  閲覧する
+                </Link>
               </div>
             </div>
           </div>
