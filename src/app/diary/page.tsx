@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { getDiaryMonths } from './utils';
+import { getDiaryMonths } from '@/app/diary/utils';
 
 export default async function DiaryPage() {
   const months = await getDiaryMonths();
